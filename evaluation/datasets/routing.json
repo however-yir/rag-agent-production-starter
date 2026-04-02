@@ -1,0 +1,67 @@
+{
+  "name": "routing_suite_v2",
+  "documents": [
+    {
+      "knowledge_base": "ops",
+      "source_name": "weather_routing_policy.txt",
+      "text": "Weather and real-time condition questions should prioritize external search tools for freshness."
+    },
+    {
+      "knowledge_base": "ops",
+      "source_name": "incident_policy.txt",
+      "text": "For incident reports, staff should escalate to the floor manager and write the incident into the compliance log."
+    },
+    {
+      "knowledge_base": "support",
+      "source_name": "refund_policy_routing.txt",
+      "text": "Refund eligibility must be checked against order id, return window, and payment status before decision."
+    }
+  ],
+  "cases": [
+    {
+      "id": "route_weather_tool",
+      "query": "What is the weather in Kanyakumari today?",
+      "knowledge_base": "ops",
+      "expected_route": "tavily_search",
+      "max_latency_ms": 800
+    },
+    {
+      "id": "route_temperature_tool",
+      "query": "What's the temperature in Shanghai today?",
+      "knowledge_base": "ops",
+      "expected_route": "tavily_search",
+      "max_latency_ms": 800
+    },
+    {
+      "id": "route_current_fx_tool",
+      "query": "What is the current USD CNY exchange rate?",
+      "knowledge_base": "ops",
+      "expected_route": "tavily_search",
+      "max_latency_ms": 800
+    },
+    {
+      "id": "route_incident_policy_search",
+      "query": "After an incident, what should staff escalate and document?",
+      "knowledge_base": "ops",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "floor manager",
+        "compliance log"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "route_refund_policy_search",
+      "query": "What checks are required before approving a refund?",
+      "knowledge_base": "support",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "order id",
+        "payment status"
+      ],
+      "max_latency_ms": 800
+    }
+  ]
+}

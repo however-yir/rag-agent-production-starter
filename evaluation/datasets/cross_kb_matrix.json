@@ -1,0 +1,96 @@
+{
+  "name": "cross_kb_matrix_v1",
+  "documents": [
+    {
+      "knowledge_base": "support",
+      "source_name": "support_order_validation.txt",
+      "text": "Support agents must validate order id, purchase channel, and payer identity before refund approval."
+    },
+    {
+      "knowledge_base": "finance",
+      "source_name": "finance_invoice_requirements.txt",
+      "text": "Finance reimbursement requests require tax invoice number, merchant name, and business purpose."
+    },
+    {
+      "knowledge_base": "security",
+      "source_name": "security_incident_severity.txt",
+      "text": "Security incidents are classified into sev1, sev2, and sev3 based on customer impact and data risk."
+    },
+    {
+      "knowledge_base": "hr",
+      "source_name": "hr_probation_policy.txt",
+      "text": "Probation review must include manager feedback, peer input, and objective performance evidence."
+    },
+    {
+      "knowledge_base": "ops",
+      "source_name": "ops_release_gate.txt",
+      "text": "Release gates require successful regression checks, rollback plan, and stakeholder sign-off."
+    }
+  ],
+  "cases": [
+    {
+      "id": "cross_support_refund_validation",
+      "query": "Before refund approval, which support checks are mandatory?",
+      "knowledge_base": "support",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "order id",
+        "payer identity"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "cross_finance_invoice_fields",
+      "query": "What invoice fields are required for reimbursement?",
+      "knowledge_base": "finance",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "tax invoice number",
+        "merchant name",
+        "business purpose"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "cross_security_severity_levels",
+      "query": "How are security incidents categorized by severity?",
+      "knowledge_base": "security",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "sev1",
+        "sev2",
+        "sev3"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "cross_hr_probation_review",
+      "query": "What evidence is needed in probation review?",
+      "knowledge_base": "hr",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "manager feedback",
+        "peer input",
+        "performance evidence"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "cross_ops_release_gate",
+      "query": "What must be ready before release gate approval?",
+      "knowledge_base": "ops",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "regression checks",
+        "rollback plan",
+        "stakeholder sign-off"
+      ],
+      "max_latency_ms": 800
+    }
+  ]
+}

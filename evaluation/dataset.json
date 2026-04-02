@@ -1,0 +1,62 @@
+{
+  "name": "foundation_regression_v1",
+  "documents": [
+    {
+      "knowledge_base": "hr",
+      "source_name": "service_animals_policy.txt",
+      "text": "If a service animal becomes disruptive, staff should de-escalate and ask the handler to regain control before taking further action."
+    },
+    {
+      "knowledge_base": "hr",
+      "source_name": "safety_policy.txt",
+      "text": "For safety incidents, staff should notify the floor manager and record the event in the incident log within the same shift."
+    },
+    {
+      "knowledge_base": "support",
+      "source_name": "refund_policy.txt",
+      "text": "Refund requests must include order id and reason. Support should confirm eligibility and return a decision within two business days."
+    }
+  ],
+  "cases": [
+    {
+      "id": "route_weather_tool",
+      "query": "What is the weather in Kanyakumari today?",
+      "knowledge_base": "hr",
+      "expected_route": "tavily_search",
+      "max_latency_ms": 500
+    },
+    {
+      "id": "rag_service_animal",
+      "query": "How should staff handle a disruptive service animal?",
+      "knowledge_base": "hr",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "regain control"
+      ],
+      "max_latency_ms": 500
+    },
+    {
+      "id": "rag_safety_incident",
+      "query": "What should staff do after a safety incident?",
+      "knowledge_base": "hr",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "incident log"
+      ],
+      "max_latency_ms": 500
+    },
+    {
+      "id": "rag_refund_support",
+      "query": "How quickly should support return a refund decision?",
+      "knowledge_base": "support",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "two business days"
+      ],
+      "max_latency_ms": 500
+    }
+  ]
+}

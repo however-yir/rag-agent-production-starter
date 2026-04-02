@@ -1,0 +1,100 @@
+{
+  "name": "rag_multi_hop_v2",
+  "documents": [
+    {
+      "knowledge_base": "security",
+      "source_name": "incident_response_step1.txt",
+      "text": "After a security incident, staff should notify the floor manager immediately."
+    },
+    {
+      "knowledge_base": "security",
+      "source_name": "incident_response_step2.txt",
+      "text": "The same shift must record incident details in the incident log for compliance."
+    },
+    {
+      "knowledge_base": "security",
+      "source_name": "incident_response_step3.txt",
+      "text": "If customer data may be exposed, the response lead must trigger legal review before external communication."
+    },
+    {
+      "knowledge_base": "ops",
+      "source_name": "handover_step1.txt",
+      "text": "During system degradation, operations should assign an incident commander and open a shared incident channel."
+    },
+    {
+      "knowledge_base": "ops",
+      "source_name": "handover_step2.txt",
+      "text": "Before shift handover, commander must summarize root cause hypotheses and unresolved blockers."
+    },
+    {
+      "knowledge_base": "ops",
+      "source_name": "handover_step3.txt",
+      "text": "The incoming shift confirms ownership by acknowledging action items in the channel."
+    },
+    {
+      "knowledge_base": "compliance",
+      "source_name": "audit_chain_step1.txt",
+      "text": "All policy exceptions require manager approval and documented reason codes."
+    },
+    {
+      "knowledge_base": "compliance",
+      "source_name": "audit_chain_step2.txt",
+      "text": "Exception records must include approver, ticket id, and expiration date for follow-up review."
+    },
+    {
+      "knowledge_base": "compliance",
+      "source_name": "audit_chain_step3.txt",
+      "text": "Expired exceptions must be either renewed with justification or closed before the audit window ends."
+    }
+  ],
+  "cases": [
+    {
+      "id": "multi_hop_incident",
+      "query": "After a security incident, what should staff do first and what documentation is required?",
+      "knowledge_base": "security",
+      "expected_route": "policy_search",
+      "min_evidence": 2,
+      "expected_keywords": [
+        "floor manager"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "multi_hop_security_legal_review",
+      "query": "After a possible data exposure incident, who is notified, what is documented, and what review is required?",
+      "knowledge_base": "security",
+      "expected_route": "policy_search",
+      "min_evidence": 3,
+      "expected_keywords": [
+        "floor manager"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "multi_hop_ops_handover",
+      "query": "In a degradation handover, what must the incident commander do and how does the next shift confirm ownership?",
+      "knowledge_base": "ops",
+      "expected_route": "policy_search",
+      "min_evidence": 3,
+      "expected_keywords": [
+        "incident commander",
+        "acknowledging action items"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "multi_hop_compliance_exception_chain",
+      "query": "For policy exceptions, which fields are mandatory and what happens when exceptions expire?",
+      "knowledge_base": "compliance",
+      "expected_route": "policy_search",
+      "min_evidence": 3,
+      "expected_keywords": [
+        "manager approval",
+        "expiration date",
+        "renewed",
+        "closed"
+      ],
+      "max_latency_ms": 800
+    }
+  ]
+}

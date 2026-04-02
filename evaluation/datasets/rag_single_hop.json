@@ -1,0 +1,125 @@
+{
+  "name": "rag_single_hop_v2",
+  "documents": [
+    {
+      "knowledge_base": "hr",
+      "source_name": "service_animals_policy.txt",
+      "text": "If a service animal becomes disruptive, staff should de-escalate and ask the handler to regain control before taking further action."
+    },
+    {
+      "knowledge_base": "support",
+      "source_name": "refund_policy.txt",
+      "text": "Refund requests must include order id and reason. Support should confirm eligibility and return a decision within two business days."
+    },
+    {
+      "knowledge_base": "finance",
+      "source_name": "expense_policy.txt",
+      "text": "Travel reimbursement requires itemized receipts and submission within 15 calendar days after trip completion."
+    },
+    {
+      "knowledge_base": "security",
+      "source_name": "badge_policy.txt",
+      "text": "Lost access badges must be reported within one hour and immediately deactivated by security operations."
+    },
+    {
+      "knowledge_base": "ops",
+      "source_name": "handoff_policy.txt",
+      "text": "Shift handoff notes must include unresolved tickets, owner name, and next follow-up deadline."
+    },
+    {
+      "knowledge_base": "compliance",
+      "source_name": "retention_policy.txt",
+      "text": "Customer support conversations must be retained for 180 days and then archived under legal hold rules."
+    },
+    {
+      "knowledge_base": "support",
+      "source_name": "escalation_policy.txt",
+      "text": "P1 incidents must be escalated to on-call lead within five minutes with a preliminary impact summary."
+    }
+  ],
+  "cases": [
+    {
+      "id": "rag_service_animal",
+      "query": "How should staff handle a disruptive service animal?",
+      "knowledge_base": "hr",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "regain control"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "rag_refund_support",
+      "query": "How quickly should support return a refund decision?",
+      "knowledge_base": "support",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "two business days"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "rag_expense_receipts",
+      "query": "What is required for travel reimbursement submission?",
+      "knowledge_base": "finance",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "itemized receipts",
+        "15 calendar days"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "rag_lost_badge_window",
+      "query": "How fast should a lost badge be reported?",
+      "knowledge_base": "security",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "one hour",
+        "deactivated"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "rag_shift_handoff_fields",
+      "query": "What details are required in shift handoff notes?",
+      "knowledge_base": "ops",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "unresolved tickets",
+        "owner name",
+        "follow-up deadline"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "rag_chat_retention_length",
+      "query": "How long should support conversations be retained before archiving?",
+      "knowledge_base": "compliance",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "180 days",
+        "archived"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "rag_p1_escalation_speed",
+      "query": "How quickly must P1 incidents be escalated?",
+      "knowledge_base": "support",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "five minutes",
+        "impact summary"
+      ],
+      "max_latency_ms": 800
+    }
+  ]
+}

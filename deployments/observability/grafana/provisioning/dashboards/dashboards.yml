@@ -1,0 +1,11 @@
+apiVersion: 1
+
+providers:
+  - name: rag-react-agent
+    orgId: 1
+    folder: RAG-ReAct-Agent
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 15
+    options:
+      path: /var/lib/grafana/dashboards

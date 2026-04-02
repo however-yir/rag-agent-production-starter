@@ -1,0 +1,83 @@
+{
+  "name": "hallucination_guard_v2",
+  "documents": [
+    {
+      "knowledge_base": "support",
+      "source_name": "warranty_policy.txt",
+      "text": "The company offers one-year limited warranty coverage for manufacturing defects only."
+    },
+    {
+      "knowledge_base": "finance",
+      "source_name": "reimbursement_cap_policy.txt",
+      "text": "Meal reimbursement is capped at 300 CNY per person per day unless pre-approved by finance."
+    },
+    {
+      "knowledge_base": "hr",
+      "source_name": "leave_policy.txt",
+      "text": "Annual leave carryover is limited to five days and must be used by the end of Q1."
+    },
+    {
+      "knowledge_base": "security",
+      "source_name": "guest_access_policy.txt",
+      "text": "Guests must be escorted at all times and cannot access restricted server rooms."
+    }
+  ],
+  "cases": [
+    {
+      "id": "hallucination_no_lifetime_warranty",
+      "query": "Do we provide a lifetime warranty for all products?",
+      "knowledge_base": "support",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_absent_keywords": [
+        "free replacements forever"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "hallucination_no_unlimited_meals",
+      "query": "What is the meal reimbursement limit in normal cases?",
+      "knowledge_base": "finance",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "300 cny",
+        "pre-approved"
+      ],
+      "expected_absent_keywords": [
+        "unlimited meals"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "hallucination_no_carryover_all",
+      "query": "How many annual leave days can be carried over?",
+      "knowledge_base": "hr",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "five days",
+        "end of q1"
+      ],
+      "expected_absent_keywords": [
+        "carry over all unused leave"
+      ],
+      "max_latency_ms": 800
+    },
+    {
+      "id": "hallucination_no_guest_server_access",
+      "query": "What are the rules for guest access to restricted areas?",
+      "knowledge_base": "security",
+      "expected_route": "policy_search",
+      "min_evidence": 1,
+      "expected_keywords": [
+        "escorted",
+        "cannot access restricted server rooms"
+      ],
+      "expected_absent_keywords": [
+        "guests may enter server rooms alone"
+      ],
+      "max_latency_ms": 800
+    }
+  ]
+}
