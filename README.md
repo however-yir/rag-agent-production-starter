@@ -1,4 +1,4 @@
-# RAG Agent Production Starter
+# RAG Agent Production Starter - 生产级 RAG 智能体脚手架 | Production-ready RAG Agent Starter
 
 🔥 A production-oriented RAG + ReAct agent service built with FastAPI, queue-based ingestion, and observability-first design.  
 🚀 Built for secure agent APIs, async document ingestion, regression gating, and distributed stability validation.  
